@@ -1,5 +1,5 @@
 ---
-date: '2021-01-01'
+date: '2021-04-01'
 title: 'Power BI Developer'
 company: 'EY Ford Rhodes'
 range: 'April 2020 - June 2021 | Islamabad'

@@ -23,6 +23,4 @@ scripts on per-minute basis using the cron-terminal, Python schedule package, an
 
 - Performed 75% code reduction in prior scripts.
 
-- Code review with peers.
-
-- Tech Stack: Python, Flask, NodeJS, Git, PM2, AWS.
+- Tech Stack: Python, Flask, NodeJS, Git, MongoDB, PM2, AWS.
