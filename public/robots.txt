@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://danyalaliasghar.github.io/sitemap/sitemap-index.xml
+Host: https://danyalaliasghar.github.io
