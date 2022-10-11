@@ -1,9 +1,9 @@
 module.exports = {
   siteTitle: 'Danyal Ali Asghar',
   siteDescription:
-    'Danyal Ali Asghar is a Power BI developer at EY Ford Rhodes, who loves learning new things and helping tech beginners.',
+    'Danyal Ali Asghar is a Senior Python Developer @ dinCloud, who loves learning new things and helping tech beginners.',
   siteKeywords:
-    'Danyal Ali Asghar, computer scientist, data analyst, software engineer, python, power bi, full stack developer, machine learning',
+    'Danyal Ali Asghar, computer scientist, data analyst, software engineer, python, power bi, backend developer, machine learning',
   siteUrl: 'https://danyalaliasghar.github.io/',
   siteLanguage: 'en_US',
   // googleAnalyticsID: '',
