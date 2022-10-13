@@ -48,7 +48,7 @@ self.__precacheManifest = [
   },
   {
     url: 'page-data/app-data.json',
-    revision: 'e442f265dc1ba0e3233290245c5837e0',
+    revision: 'd261a1fdd7733a1f612e48d672191ece',
   },
   {
     url: 'polyfill-d8d7a3e390d4a6f77d18.js',
