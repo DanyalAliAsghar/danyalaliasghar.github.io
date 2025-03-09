@@ -9,7 +9,7 @@ module.exports = {
   // googleAnalyticsID: '',
   // googleVerification: '',
   name: 'Danyal Ali Asghar',
-  location: 'Islamabad, Pakistan',
+  location: 'Karachi, Pakistan',
   email: 'danyal.aliasghar@gmail.com',
   github: 'https://github.com/DanyalAliAsghar',
   twitterHandle: '@DanyalAliAsghar',

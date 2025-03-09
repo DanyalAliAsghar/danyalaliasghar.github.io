@@ -2,7 +2,7 @@
 date: '2021-07-01'
 title: 'Senior Python Developer'
 company: 'dinCloud'
-range: 'July 2021 - Present | Islamabad'
+range: 'July 2021 - Present | Karachi'
 url: 'https://dincloud.com'
 ---
 
