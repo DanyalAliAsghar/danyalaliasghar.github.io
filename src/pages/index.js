@@ -56,7 +56,7 @@ export const pageQuery = graphql`
                 }
               }
             }
-            skills
+          #skills
           }
           html
         }

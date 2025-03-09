@@ -5,9 +5,9 @@ skills:
   - Programming Languages: Python, C, C++, Java
   - Databases: MongoDB, PostgreSQL, MySQL, SQLite
   - ML/DS/AI Toolkit: Jupyter Notebook/Lab, Pandas, SciKit-Learn, NumPy, SciPy, Dash, Matplotlib, TextBlob, VaderSentiment, Selenium, BeautifulSoup, Scrapy
-  - Web Technologies: HTML, CSS, JavaScript, ReactJS, NodeJS, Laravel, Flutter
-  - Operating Systems: Windows, Linux
-  - DevOps: AWS, Azure
+  - Web Technologies: HTML, CSS, JavaScript, ReactJS, NodeJS, Flask, Django, FastAPI
+  - Operating Systems: Windows, Linux, MacOS
+  - DevOps: AWS, Azure, Docker
   - Data Visualization: Power BI, Tableau
   - Version Control: Git, Bitbucket, Alembic, Jira
 ---

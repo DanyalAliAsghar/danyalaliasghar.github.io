@@ -24,4 +24,4 @@ url: 'https://dincloud.com'
 
 - Code review with peers.
 
-- Tech Stack: Python, Django, MySQL, AWS EC2, Azure, Git.
+- Tech Stack: Python, Django, FastAPI, MySQL, PostgreSQL, AWS, Azure, Git, Bitbucket, Jira.
