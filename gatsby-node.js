@@ -100,3 +100,14 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     },
   });
 };
+
+// Explicitly define schema for optional/ambiguous frontmatter fields
+// to avoid GraphQL inference errors when field types vary across files.
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  createTypes(`
+    type MarkdownRemarkFrontmatter {
+      skills: JSON
+    }
+  `);
+};

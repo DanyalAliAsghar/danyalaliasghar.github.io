@@ -1,9 +1,9 @@
 module.exports = {
   siteTitle: 'Danyal Ali Asghar',
   siteDescription:
-    'Danyal Ali Asghar is a Senior Python Developer @ dinCloud, who loves learning new things and helping tech beginners.',
+    'Danyal Ali Asghar is a Senior AI Engineer specializing in LLM-based extraction, RAG pipelines, Azure AI services, and scalable cloud data systems.',
   siteKeywords:
-    'Danyal Ali Asghar, computer scientist, data analyst, software engineer, python, power bi, backend developer, machine learning',
+    'Danyal Ali Asghar, senior AI engineer, machine learning, LLM, RAG, Azure AI, Python, data engineering, NLP, prompt engineering',
   siteUrl: 'https://danyalaliasghar.github.io/',
   siteLanguage: 'en_US',
   // googleAnalyticsID: '',
@@ -45,10 +45,14 @@ module.exports = {
       name: 'Experience',
       url: '/#jobs',
     },
-    // {
-    //   name: 'Projects',
-    //   url: '/#projects',
-    // },
+    {
+      name: 'AI Projects',
+      url: '/#ai-projects',
+    },
+    {
+      name: 'Certifications',
+      url: '/#certifications',
+    },
     {
       name: 'Contact',
       url: '/#contact',

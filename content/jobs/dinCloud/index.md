@@ -1,27 +1,23 @@
 ---
 date: '2021-07-01'
-title: 'Senior Python Developer'
+title: 'Python/AI Engineer'
 company: 'dinCloud'
-range: 'July 2021 - Present | Karachi'
+range: 'July 2021 - August 2025 | Karachi'
 url: 'https://dincloud.com'
 ---
 
-- Implemented MVC architecture in developing the web application with the help of Django framework.
+- Built a voice assistant prototype using Whisper STT and GPT-4 for conversational response generation.
 
-- Develop consumer-based features and applications using Python, Django, HTML, behaviour Driven
-  Development (BDD) and pair-based programming.
+- Developed prompt templates and LLM workflows to improve response quality and latency.
 
-- Developed entire frontend and backend modules using Python on Django Web Framework.
+- Built APIs and cloud-native services for AI feature integration.
 
-- Implemented the SDK for Azure in Python for connection between dinManage portal and Azure.
+- Designed data validation, monitoring, and automation pipelines in Python.
 
-- Fine-tuned and maintained database with respect to specific behaviors.
+- Designed and optimized end-to-end ELT pipelines to process multi-source data using Python, SQL, and Airflow/dbt workflows.
 
-- Involved in build and Azure deployment of Fuction Apps as API services to communicate with the
-  database using Visual Studio Code extensions.
+- Orchestrated data pipelines using Apache Airflow and automated transformations using dbt for modular, testable data flows.
 
-- Experience working in agile environments with tools like Git.
+- Built scalable data models and warehouse schemas in Redshift and PostgreSQL to support analytics dashboards and ad-hoc BI reporting.
 
-- Code review with peers.
-
-- Tech Stack: Python, Django, FastAPI, MySQL, PostgreSQL, AWS, Azure, Git, Bitbucket, Jira.
+- Tech Stack: Python, FastAPI, Airflow, dbt, PostgreSQL, Redshift, Whisper, GPT-4, AWS, Azure, Git.

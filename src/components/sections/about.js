@@ -125,7 +125,19 @@ const About = ({ data }) => {
         <StyledContent>
           <div dangerouslySetInnerHTML={{ __html: html }} />
           <SkillsContainer>
-            {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
+            {skills &&
+              skills.map((skill, i) => {
+                let skillText = '';
+                if (skill && typeof skill === 'object') {
+                  // Convert object entries to readable string
+                  skillText = Object.entries(skill)
+                    .map(([k, v]) => `${k}: ${v}`)
+                    .join(', ');
+                } else {
+                  skillText = String(skill);
+                }
+                return <Skill key={i}>{skillText}</Skill>;
+              })}
           </SkillsContainer>
         </StyledContent>
         <StyledPic>

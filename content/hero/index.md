@@ -1,8 +1,8 @@
 ---
 title: 'Hello World! My name is'
 name: 'Danyal Ali Asghar'
-subtitle: 'I love to play with data on the web!'
+subtitle: 'I build scalable AI and data systems.'
 buttonText: 'Send me a pigeon!'
 ---
 
-A Computer Scientist with a goal-driven creative mindset and passion for learning and innovating. I can resolve your data and automation pain points. I aspire to dive deeper and deeper into the realm of data science. Nevertheless, I’m open to working as a developer on various stacks and technologies as showcased in the experience section.
+Senior AI Engineer with 7+ years of experience building scalable AI, data, and cloud systems. Hands-on experience with LLM-based extraction, RAG-style retrieval, prompt engineering, Azure AI services, and production automation. Strong in Python, SQL, cloud architecture, and end-to-end AI system delivery.
