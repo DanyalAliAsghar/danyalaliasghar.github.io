@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-tag-js","path":"/pensieve/tags/example/","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"frontmatter":{"title":"Example Project","description":null,"date":"2026-06-12","slug":null,"tags":["example","placeholder"]}}}]}},"pageContext":{"tag":"example"}},"staticQueryHashes":["3115057458"]}
