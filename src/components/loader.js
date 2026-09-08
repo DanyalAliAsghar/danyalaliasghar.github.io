@@ -23,7 +23,11 @@ const leaveIntro = keyframes`
 const StyledContainer = styled.div`
   ${mixins.flexCenter};
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   z-index: 99;
   background: ${theme.colors.darkNavy};
   color: ${theme.colors.green};
@@ -41,6 +45,8 @@ const StyledContainer = styled.div`
 const StyledLogo = styled.div`
   width: 100px;
   height: 100px;
+  flex-shrink: 0;
+  transform-origin: 50% 50%;
   animation: ${leaveLogo} 350ms 2100ms ease-in-out both;
 
   svg {
@@ -49,11 +55,11 @@ const StyledLogo = styled.div`
     height: 100%;
     overflow: visible;
   }
-  path {
+  .logo-outline {
     stroke-dasharray: 100;
     animation: ${drawOutline} 1400ms 120ms cubic-bezier(0.65, 0, 0.35, 1) both;
   }
-  text {
+  .logo-letter {
     animation: ${revealLetter} 600ms 1100ms ease-in-out both;
   }
 `;
@@ -120,17 +126,21 @@ const Loader = ({ finishLoading }) => {
         <StyledLogo>
           <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
             <path
+              className="logo-outline"
               pathLength="100"
               fill="none"
               stroke="currentColor"
               strokeWidth="5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M50 5 11 27 11 72 50 95 89 73 89 28Z"
+              d="M50 5 11 27.5 11 72.5 50 95 89 72.5 89 27.5Z"
             />
-            <text x="36" y="66" fill="currentColor" fontSize="55" fontFamily="Consolas, monospace">
-              D
-            </text>
+            <path
+              className="logo-letter"
+              fill="currentColor"
+              fillRule="evenodd"
+              d="M37 32H45C57 32 63 38 63 50S57 68 45 68H37Z M41 36V64H45C54 64 59 59 59 50S54 36 45 36Z"
+            />
           </svg>
         </StyledLogo>
       </StyledContainer>
