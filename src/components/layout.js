@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Head, Nav, Social, Footer } from '@components';
+import { Head, Loader, Nav, Social, Footer } from '@components';
 import WhatsApp from './whatsapp';
 import styled from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
@@ -40,11 +40,18 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  section[tabindex='-1']:focus {
+    outline: none;
+  }
 `;
 
 const Layout = ({ children, location }) => {
+  const [showIntro, setShowIntro] = useState(location.pathname === '/');
+  const finishIntro = useCallback(() => setShowIntro(false), []);
+
   useEffect(() => {
     if (location.hash) {
+      finishIntro();
       const id = location.hash.substring(1);
       const timeout = setTimeout(() => {
         const el = document.getElementById(id);
@@ -59,7 +66,7 @@ const Layout = ({ children, location }) => {
       return () => clearTimeout(timeout);
     }
     return undefined;
-  }, [location.hash]);
+  }, [location.hash, finishIntro]);
 
   return (
     <StaticQuery
@@ -81,6 +88,8 @@ const Layout = ({ children, location }) => {
           <GlobalStyle />
 
           <SkipToContent href="#content">Skip to content</SkipToContent>
+
+          {showIntro && <Loader finishLoading={finishIntro} />}
 
           <StyledContent>
             <Nav />

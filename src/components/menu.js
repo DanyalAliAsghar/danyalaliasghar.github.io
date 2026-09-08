@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { navLinks } from '@config';
 import styled from 'styled-components';
-import { theme, mixins } from '@styles';
+import { theme } from '@styles';
 const { colors, fonts } = theme;
 
 const StyledContainer = styled.div`
@@ -73,11 +73,6 @@ const NavList = styled.ul`
     border-bottom: 1px solid rgba(168, 178, 209, 0.12);
   }
 `;
-const ResumeLink = styled.a`
-  ${mixins.bigButton};
-  width: 100%;
-  text-align: center;
-`;
 
 const Menu = ({ menuOpen, closeMenu }) => {
   const dialog = useRef(null);
@@ -143,13 +138,6 @@ const Menu = ({ menuOpen, closeMenu }) => {
               </li>
             ))}
           </NavList>
-          <ResumeLink
-            href="/resume.pdf"
-            download="Danyal-Ali-Asghar-Resume.pdf"
-            onClick={closeMenu}
-          >
-            Download my resume
-          </ResumeLink>
         </nav>
       </Sidebar>
     </StyledContainer>

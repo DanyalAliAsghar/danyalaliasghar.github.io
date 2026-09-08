@@ -81,14 +81,6 @@ const StyledList = styled.ul`
     font-size: 11px;
   }
 `;
-const StyledResumeButton = styled.a`
-  ${mixins.smallButton};
-  white-space: nowrap;
-  min-height: 42px;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-`;
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -136,9 +128,6 @@ const Nav = () => {
               </li>
             ))}
           </StyledList>
-          <StyledResumeButton href="/resume.pdf" download="Danyal-Ali-Asghar-Resume.pdf">
-            My resume
-          </StyledResumeButton>
         </StyledLinks>
       </StyledNav>
       <Menu menuOpen={menuOpen} closeMenu={closeMenu} />

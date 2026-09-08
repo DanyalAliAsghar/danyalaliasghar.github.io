@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
-import { srConfig, email, whatsapp } from '@config';
+import { srConfig, email, calendly } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, Section } from '@styles';
 const { colors, fonts } = theme;
@@ -19,12 +19,6 @@ const StyledContainer = styled(Section)`
     font: 13px ${fonts.SFMono};
     color: ${colors.green};
     margin-bottom: 22px;
-  }
-  .email {
-    display: inline-block;
-    margin-top: 28px;
-    font-size: 17px;
-    overflow-wrap: anywhere;
   }
 `;
 const StyledActions = styled.div`
@@ -49,13 +43,10 @@ const Contact = ({ data }) => {
       <div dangerouslySetInnerHTML={{ __html: html }} />
       <StyledActions>
         <a href={`mailto:${email}`}>{frontmatter.buttonText}</a>
-        <a href={whatsapp} target="_blank" rel="noopener noreferrer">
-          Message me on WhatsApp
+        <a href={calendly} target="_blank" rel="noopener noreferrer">
+          Book a call
         </a>
       </StyledActions>
-      <a className="email" href={`mailto:${email}`}>
-        {email}
-      </a>
     </StyledContainer>
   );
 };

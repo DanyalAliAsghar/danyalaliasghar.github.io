@@ -26,6 +26,11 @@ const StyledPortrait = styled.figure`
     border-radius: 12px;
     background: ${colors.lightNavy};
     border: 1px solid ${colors.lightestNavy};
+    filter: grayscale(100%);
+    transition: filter 300ms ease;
+  }
+  &:hover .portrait {
+    filter: grayscale(0%);
   }
   figcaption {
     padding-top: 15px;

@@ -12,6 +12,7 @@ module.exports = {
   location: 'Karachi, Pakistan',
   email: 'danyal.aliasghar@gmail.com',
   whatsapp: 'https://wa.me/%2B923337894331/',
+  calendly: 'https://calendly.com/danyal-aliasghar/30min/',
   resume: '/resume.pdf',
   github: 'https://github.com/DanyalAliAsghar',
   twitterHandle: '@DanyalAliAsghar',
@@ -23,6 +24,14 @@ module.exports = {
     {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/danyal-aliasghar/',
+    },
+    {
+      name: 'Twitter',
+      url: 'https://twitter.com/DanyalAliAsghar/',
+    },
+    {
+      name: 'Instagram',
+      url: 'https://www.instagram.com/danyal.aliasghar/',
     },
   ],
 
