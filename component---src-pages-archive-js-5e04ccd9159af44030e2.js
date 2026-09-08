@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{nRki:function(e,a,n){"use strict";n.r(a);var t=n("q1tI"),l=n.n(t),r=n("TJpk"),c=n("Kvkj"),o=n("InJ6");a.default=function(e){var a=e.location,n=e.data;return l.a.createElement(c.i,{location:a},l.a.createElement(r.Helmet,null,l.a.createElement("title",null,"My work | Danyal Ali Asghar")),l.a.createElement(o.d,null,l.a.createElement(c.a,{data:n.allMarkdownRemark.edges})))}}}]);
+//# sourceMappingURL=component---src-pages-archive-js-5e04ccd9159af44030e2.js.map
