@@ -19,14 +19,14 @@ import favicon96x96 from '@images/favicons/favicon-96x96.png';
 import favicon16x16 from '@images/favicons/favicon-16x16.png';
 import msIcon144x144 from '@images/favicons/ms-icon-144x144.png';
 
-const Head = ({ metadata }) => (
+const Head = ({ metadata, pathname = '/' }) => (
   <Helmet>
     <html lang="en" prefix="og: http://ogp.me/ns#" />
     <title itemProp="name" lang="en">
       {metadata.title}
     </title>
     <link rel="shortcut icon" href={favicon} />
-    <link rel="canonical" href="https://danyalaliasghar.github.io/" />
+    <link rel="canonical" href={`${config.siteUrl}${pathname}`} />
 
     <meta name="description" content={metadata.description} />
     <meta name="keywords" content={config.siteKeywords} />
@@ -34,7 +34,7 @@ const Head = ({ metadata }) => (
     <meta property="og:title" content={metadata.title} />
     <meta property="og:description" content={metadata.description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={metadata.siteUrl} />
+    <meta property="og:url" content={`${config.siteUrl}${pathname}`} />
     <meta property="og:site_name" content={metadata.title} />
     <meta property="og:image" content={`${config.siteUrl}${ogImage}`} />
     <meta property="og:image:width" content="1200" />
@@ -45,7 +45,7 @@ const Head = ({ metadata }) => (
     <meta itemProp="description" content={metadata.description} />
     <meta itemProp="image" content={`${config.siteUrl}${ogImage}`} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={metadata.siteUrl} />
+    <meta name="twitter:url" content={`${config.siteUrl}${pathname}`} />
     <meta name="twitter:site" content={config.twitterHandle} />
     <meta name="twitter:creator" content={config.twitterHandle} />
     <meta name="twitter:title" content={metadata.title} />
@@ -69,6 +69,20 @@ const Head = ({ metadata }) => (
     <meta name="msapplication-TileColor" content={config.colors.navy} />
     <meta name="msapplication-TileImage" content={msIcon144x144} />
     <meta name="theme-color" content={config.colors.navy} />
+    <script type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: config.name,
+        url: config.siteUrl,
+        jobTitle: 'Senior AI Engineer',
+        description: config.siteDescription,
+        email: config.email,
+        homeLocation: { '@type': 'Place', name: config.location },
+        alumniOf: { '@type': 'CollegeOrUniversity', name: 'COMSATS University Islamabad' },
+        sameAs: config.socialMedia.map(profile => profile.url),
+      })}
+    </script>
   </Helmet>
 );
 
@@ -76,4 +90,5 @@ export default Head;
 
 Head.propTypes = {
   metadata: PropTypes.object.isRequired,
+  pathname: PropTypes.string,
 };

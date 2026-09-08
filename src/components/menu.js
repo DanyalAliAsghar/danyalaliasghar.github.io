@@ -1,116 +1,156 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { navLinks } from '@config';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { theme, mixins } from '@styles';
+const { colors, fonts } = theme;
 
 const StyledContainer = styled.div`
   position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
+  inset: 0;
   height: 100vh;
-  z-index: 10;
-  outline: 0;
-  transition: ${theme.transition};
-  transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
-  visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
-  display: none;
-  ${media.tablet`display: block;`};
+  height: 100dvh;
+  z-index: 30;
+  display: ${props => (props.menuOpen ? 'block' : 'none')};
 `;
-const Sidebar = styled.aside`
-  ${mixins.flexCenter};
-  flex-direction: column;
-  background-color: ${colors.lightNavy};
-  padding: 50px;
-  width: 50vw;
+const Backdrop = styled.button`
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  position: relative;
-  right: 0;
-  margin-left: auto;
-  font-family: ${fonts.SFMono};
-  box-shadow: -10px 0px 30px -15px ${colors.shadowNavy};
-  ${media.thone`padding: 25px;`};
-  ${media.phablet`width: 75vw;`};
-  ${media.tiny`padding: 10px;`};
+  background: rgba(2, 12, 27, 0.75);
 `;
-const NavLinks = styled.nav`
-  ${mixins.flexBetween};
-  width: 100%;
+const Sidebar = styled.div`
+  position: relative;
+  display: flex;
   flex-direction: column;
-  text-align: center;
+  justify-content: center;
+  width: min(85vw, 380px);
+  height: 100%;
+  margin-left: auto;
+  padding: 86px 32px 40px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: ${colors.lightNavy};
+  box-shadow: -10px 0 30px -15px ${colors.shadowNavy};
   color: ${colors.lightestSlate};
-`;
-const NavList = styled.ol`
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  width: 100%;
-`;
-const NavListItem = styled.li`
-  margin: 0 auto 20px;
-  position: relative;
-  font-size: ${fontSizes.lg};
-  counter-increment: item 1;
-  ${media.thone`
-    margin: 0 auto 10px;
-    font-size: ${fontSizes.md};
-  `};
-  ${media.tiny`font-size: ${fontSizes.smish};`};
-  &:before {
-    display: block;
-    content: '0' counter(item) '.';
-    color: ${colors.green};
-    font-size: ${fontSizes.sm};
-    margin-bottom: 5px;
+  font-family: ${fonts.SFMono};
+  @media (max-height: 550px) {
+    justify-content: flex-start;
+    padding-top: 72px;
+    padding-bottom: 24px;
   }
 `;
-const NavLink = styled(Link)`
-  ${mixins.link};
-  padding: 3px 20px 20px;
-  width: 100%;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  color: ${colors.green};
+  svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+`;
+const NavList = styled.ul`
+  padding: 0;
+  margin: 0 0 24px;
+  list-style: none;
+  font-size: 16px;
+  a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(168, 178, 209, 0.12);
+  }
 `;
 const ResumeLink = styled.a`
   ${mixins.bigButton};
-  padding: 18px 50px;
-  margin: 10% auto 0;
-  width: max-content;
+  width: 100%;
+  text-align: center;
 `;
 
-const Menu = ({ menuOpen, toggleMenu }) => {
-  const handleMenuClick = e => {
-    const target = e.target;
-    const isLink = target.hasAttribute('href');
-    const isNotMenu = target.classList && target.classList[0].includes('StyledContainer');
+const Menu = ({ menuOpen, closeMenu }) => {
+  const dialog = useRef(null);
 
-    if (isLink || isNotMenu) {
-      toggleMenu();
+  useEffect(() => {
+    if (!menuOpen) {
+      return undefined;
     }
-  };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const focusable = () => Array.from(dialog.current.querySelectorAll('a[href], button'));
+    focusable()[0].focus();
+
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeMenu();
+      }
+      if (event.key === 'Tab') {
+        const items = focusable();
+        const first = items[0];
+        const last = items[items.length - 1];
+        const outside = !dialog.current.contains(document.activeElement);
+        if (event.shiftKey && (document.activeElement === first || outside)) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || outside)) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [menuOpen, closeMenu]);
 
   return (
-    <StyledContainer
-      menuOpen={menuOpen}
-      onClick={handleMenuClick}
-      aria-hidden={!menuOpen}
-      tabIndex={menuOpen ? 1 : -1}>
-      <Sidebar>
-        <NavLinks>
+    <StyledContainer id="mobile-navigation" menuOpen={menuOpen}>
+      <Backdrop
+        type="button"
+        aria-label="Close navigation menu"
+        tabIndex={-1}
+        onClick={closeMenu}
+      />
+      <Sidebar ref={dialog} role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <CloseButton type="button" aria-label="Close navigation menu" onClick={closeMenu}>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </CloseButton>
+        <nav aria-label="Mobile navigation">
           <NavList>
-            {navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <NavListItem key={i}>
-                  <NavLink to={url}>{name}</NavLink>
-                </NavListItem>
-              ))}
+            {navLinks.map(({ url, name }) => (
+              <li key={url}>
+                <Link to={url} onClick={closeMenu}>
+                  {name}
+                </Link>
+              </li>
+            ))}
           </NavList>
-          <ResumeLink href="/resume.pdf" target="_blank" rel="nofollow noopener noreferrer">
-            Resume
+          <ResumeLink
+            href="/resume.pdf"
+            download="Danyal-Ali-Asghar-Resume.pdf"
+            onClick={closeMenu}
+          >
+            Download my resume
           </ResumeLink>
-        </NavLinks>
+        </nav>
       </Sidebar>
     </StyledContainer>
   );
@@ -118,7 +158,7 @@ const Menu = ({ menuOpen, toggleMenu }) => {
 
 Menu.propTypes = {
   menuOpen: PropTypes.bool.isRequired,
-  toggleMenu: PropTypes.func.isRequired,
+  closeMenu: PropTypes.func.isRequired,
 };
 
 export default Menu;

@@ -1,21 +1,12 @@
 ---
 date: '2020-03-01'
 title: 'Full Stack Developer'
-company: 'Web Projects Sdn Bhd'
-range: 'March 2020 - June 2021 | Islamabad'
-url: 'http://www.dunbatu3.com/'
+company: 'Web Projects Sendirian Berhad (SDN BHD)'
+range: 'March 2020 - March 2021 | Islamabad'
 ---
 
-- Developed modules and JS applications with ReactJS.
+- I built responsive ReactJS interfaces with JavaScript, HTML, CSS and Material UI, connecting user-facing features to back-end APIs.
 
-- Developed, debugged, and tested back-end APIs.
+- I developed, debugged and tested APIs to support those application features.
 
-- Experience in using modern build toolchains and package managers (webpack, npm, and yarn).
-
-- Experience developing modern responsive web applications with HTML, CSS, Material UI.
-
-- Experience working in agile environments with tools like Git, Bitbucket.
-
-- Contributed actively to daily standups, retrospectives, and sprint planning.
-
-- Tech Stack: HTML, CSS, JavaScript, ReactJS, PostgreSQL, Git, Bitbucket, AWS.
+- I collaborated in an agile team using Git and Bitbucket to manage changes.

@@ -10,7 +10,7 @@ const theme = {
     navy: BG,
     lightNavy: '#172a45',
     lightestNavy: '#303C55',
-    slate: '#8892b0',
+    slate: '#a2adc5',
     lightSlate: '#a8b2d1',
     lightestSlate: '#ccd6f6',
     white: '#e6f1ff',
@@ -39,7 +39,7 @@ const theme = {
   easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
   transition: 'all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1)',
 
-  borderRadius: '3px',
+  borderRadius: '8px',
   navHeight: '100px',
   navScrollHeight: '70px',
   margin: '20px',

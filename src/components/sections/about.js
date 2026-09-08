@@ -2,156 +2,105 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import sr from '@utils/sr';
-import { srConfig, github } from '@config';
+import { srConfig } from '@config';
 import styled from 'styled-components';
-import { theme, mixins, media, Section, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { theme, mixins, Section, Heading } from '@styles';
+const { colors, fonts } = theme;
 
-const StyledContainer = styled(Section)`
-  position: relative;
-`;
-const StyledFlexContainer = styled.div`
-  ${mixins.flexBetween};
-  align-items: flex-start;
-  ${media.tablet`display: block;`};
-`;
-const StyledContent = styled.div`
-  width: 60%;
-  max-width: 480px;
-  ${media.tablet`width: 100%;`};
+const StyledIntro = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 65px;
+  align-items: start;
   a {
     ${mixins.inlineLink};
   }
-`;
-const SkillsContainer = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 200px));
-  overflow: hidden;
-  padding: 0;
-  margin: 20px 0 0 0;
-  list-style: none;
-`;
-const Skill = styled.li`
-  position: relative;
-  margin-bottom: 10px;
-  padding-left: 20px;
-  font-family: ${fonts.SFMono};
-  font-size: ${fontSizes.smish};
-  color: ${colors.green};
-  &:before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: ${colors.green};
-    font-size: ${fontSizes.sm};
-    line-height: 12px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
 `;
-const StyledPic = styled.div`
-  position: relative;
-  width: 40%;
-  max-width: 300px;
-  margin-left: 60px;
-  ${media.tablet`margin: 60px auto 0;`};
-  ${media.phablet`width: 70%;`};
-  a {
-    &:focus {
-      outline: 0;
-    }
+const StyledPortrait = styled.figure`
+  margin: 0;
+  .portrait {
+    border-radius: 12px;
+    background: ${colors.lightNavy};
+    border: 1px solid ${colors.lightestNavy};
+  }
+  figcaption {
+    padding-top: 15px;
+    font: 12px/1.7 ${fonts.SFMono};
+    color: ${colors.lightSlate};
+  }
+  @media (max-width: 768px) {
+    max-width: 280px;
   }
 `;
-const StyledAvatar = styled(Img)`
-  position: relative;
-  mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1);
-  border-radius: ${theme.borderRadius};
-  transition: ${theme.transition};
-`;
-const StyledAvatarLink = styled.a`
-  ${mixins.boxShadow};
-  width: 100%;
-  position: relative;
-  border-radius: ${theme.borderRadius};
-  background-color: ${colors.lightestSlate};
-  margin-left: -20px;
-  &:hover,
-  &:focus {
-    background: transparent;
-    &:after {
-      top: 15px;
-      left: 15px;
-    }
-    ${StyledAvatar} {
-      filter: none;
-      mix-blend-mode: normal;
+const StyledSkills = styled.div`
+  margin-top: 45px;
+  padding-top: 32px;
+  border-top: 1px solid ${colors.lightestNavy};
+  h3 {
+    font-size: 24px;
+    margin-bottom: 22px;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
     }
   }
-  &:before,
-  &:after {
-    content: '';
+  li {
+    font-size: 17px;
+  }
+  strong {
     display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: ${theme.borderRadius};
-    transition: ${theme.transition};
-  }
-  &:before {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: ${colors.navy};
-    mix-blend-mode: screen;
-  }
-  &:after {
-    border: 2px solid ${colors.green};
-    top: 10px;
-    left: 10px;
-    z-index: -1;
+    font: 13px/1.5 ${fonts.SFMono};
+    color: ${colors.green};
+    margin-bottom: 8px;
   }
 `;
 
 const About = ({ data }) => {
   const { frontmatter, html } = data[0].node;
-  const { title, skills, avatar } = frontmatter;
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
-
   return (
-    <StyledContainer id="about" ref={revealContainer}>
-      <Heading>{title}</Heading>
-      <StyledFlexContainer>
-        <StyledContent>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-          <SkillsContainer>
-            {skills &&
-              skills.map((skill, i) => {
-                let skillText = '';
-                if (skill && typeof skill === 'object') {
-                  // Convert object entries to readable string
-                  skillText = Object.entries(skill)
-                    .map(([k, v]) => `${k}: ${v}`)
-                    .join(', ');
-                } else {
-                  skillText = String(skill);
-                }
-                return <Skill key={i}>{skillText}</Skill>;
-              })}
-          </SkillsContainer>
-        </StyledContent>
-        <StyledPic>
-          <StyledAvatarLink href={github}>
-            <StyledAvatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
-          </StyledAvatarLink>
-        </StyledPic>
-      </StyledFlexContainer>
-    </StyledContainer>
+    <Section id="about" ref={revealContainer}>
+      <Heading>{frontmatter.title}</Heading>
+      <StyledIntro>
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <StyledPortrait>
+          <Img
+            className="portrait"
+            fluid={frontmatter.avatar.childImageSharp.fluid}
+            alt="My portrait, Danyal Ali Asghar"
+          />
+          <figcaption>I’m based in Karachi, Pakistan.</figcaption>
+        </StyledPortrait>
+      </StyledIntro>
+      <StyledSkills>
+        <h3>What I work with</h3>
+        <ul>
+          {frontmatter.skills.map(skill => {
+            const separator = skill.indexOf(':');
+            return (
+              <li key={skill}>
+                <strong>{skill.slice(0, separator)}</strong>
+                {skill.slice(separator + 1).trim()}
+              </li>
+            );
+          })}
+        </ul>
+      </StyledSkills>
+    </Section>
   );
 };
 
-About.propTypes = {
-  data: PropTypes.array.isRequired,
-};
-
+About.propTypes = { data: PropTypes.array.isRequired };
 export default About;

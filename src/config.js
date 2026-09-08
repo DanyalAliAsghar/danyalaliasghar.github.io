@@ -1,16 +1,18 @@
 module.exports = {
-  siteTitle: 'Danyal Ali Asghar',
+  siteTitle: 'Danyal Ali Asghar | Senior AI Engineer',
   siteDescription:
-    'Danyal Ali Asghar is a Senior AI Engineer specializing in LLM-based extraction, RAG pipelines, Azure AI services, and scalable cloud data systems.',
+    'I’m Danyal Ali Asghar, a Senior AI Engineer in Karachi. I build document intelligence, RAG applications, and reliable data workflows with Python and Azure.',
   siteKeywords:
     'Danyal Ali Asghar, senior AI engineer, machine learning, LLM, RAG, Azure AI, Python, data engineering, NLP, prompt engineering',
-  siteUrl: 'https://danyalaliasghar.github.io/',
+  siteUrl: 'https://danyalaliasghar.github.io',
   siteLanguage: 'en_US',
   // googleAnalyticsID: '',
   // googleVerification: '',
   name: 'Danyal Ali Asghar',
   location: 'Karachi, Pakistan',
   email: 'danyal.aliasghar@gmail.com',
+  whatsapp: 'https://wa.me/%2B923337894331/',
+  resume: '/resume.pdf',
   github: 'https://github.com/DanyalAliAsghar',
   twitterHandle: '@DanyalAliAsghar',
   socialMedia: [
@@ -21,18 +23,6 @@ module.exports = {
     {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/danyal-aliasghar/',
-    },
-    // {
-    //   name: 'Kaggle',
-    //   url: 'https://www.kaggle.com/danyalaliasghar',
-    // },
-    {
-      name: 'Instagram',
-      url: 'https://www.instagram.com/danyal.aliasghar/',
-    },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com/DanyalAliAsghar',
     },
   ],
 
@@ -46,11 +36,11 @@ module.exports = {
       url: '/#jobs',
     },
     {
-      name: 'AI Projects',
+      name: 'My work',
       url: '/#ai-projects',
     },
     {
-      name: 'Certifications',
+      name: 'Learning',
       url: '/#certifications',
     },
     {

@@ -1,5 +1,5 @@
 ---
 date: '2021-12-01'
-title: 'AI Fundamentals Certification'
+title: 'AI Fundamentals'
 issuer: 'DataCamp'
 ---

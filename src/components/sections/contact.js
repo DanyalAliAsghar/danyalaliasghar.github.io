@@ -1,71 +1,64 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
-import { srConfig, email } from '@config';
+import { srConfig, email, whatsapp } from '@config';
 import styled from 'styled-components';
-import { theme, mixins, media, Section, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { theme, mixins, Section } from '@styles';
+const { colors, fonts } = theme;
 
 const StyledContainer = styled(Section)`
+  max-width: 760px;
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto 100px;
-  a {
-    ${mixins.inlineLink};
+  padding-bottom: 110px;
+  h2 {
+    font-size: clamp(40px, 5vw, 62px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .overline {
+    font: 13px ${fonts.SFMono};
+    color: ${colors.green};
+    margin-bottom: 22px;
+  }
+  .email {
+    display: inline-block;
+    margin-top: 28px;
+    font-size: 17px;
+    overflow-wrap: anywhere;
   }
 `;
-const StyledHeading = styled(Heading)`
-  display: block;
-  color: ${colors.green};
-  font-size: ${fontSizes.md};
-  font-family: ${fonts.SFMono};
-  font-weight: normal;
-  margin-bottom: 20px;
+const StyledActions = styled.div`
+  display: flex;
   justify-content: center;
-  ${media.desktop`font-size: ${fontSizes.sm};`};
-  &:before {
-    bottom: 0;
-    font-size: ${fontSizes.sm};
-    ${media.desktop`font-size: ${fontSizes.smish};`};
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+  a {
+    ${mixins.bigButton};
   }
-  &:after {
-    display: none;
-  }
-`;
-const StyledTitle = styled.h4`
-  margin: 0 0 20px;
-  font-size: 60px;
-  ${media.desktop`font-size: 50px;`};
-  ${media.tablet`font-size: 40px;`};
-`;
-const StyledEmailLink = styled.a`
-  ${mixins.bigButton};
-  margin-top: 50px;
 `;
 
 const Contact = ({ data }) => {
   const { frontmatter, html } = data[0].node;
-  const { title, buttonText } = frontmatter;
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
-
   return (
     <StyledContainer id="contact" ref={revealContainer}>
-      <StyledHeading>What&apos;s Next?</StyledHeading>
-
-      <StyledTitle>{title}</StyledTitle>
-
+      <p className="overline">Get in touch with me</p>
+      <h2>{frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-
-      <StyledEmailLink href={`mailto:${email}`} target="_blank" rel="nofollow noopener noreferrer">
-        {buttonText}
-      </StyledEmailLink>
+      <StyledActions>
+        <a href={`mailto:${email}`}>{frontmatter.buttonText}</a>
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+          Message me on WhatsApp
+        </a>
+      </StyledActions>
+      <a className="email" href={`mailto:${email}`}>
+        {email}
+      </a>
     </StyledContainer>
   );
 };
 
-Contact.propTypes = {
-  data: PropTypes.array.isRequired,
-};
-
+Contact.propTypes = { data: PropTypes.array.isRequired };
 export default Contact;

@@ -1,110 +1,105 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { email } from '@config';
+import { email, resume } from '@config';
 import styled from 'styled-components';
-import { theme, mixins, media, Section } from '@styles';
-const { colors, fontSizes, fonts, navDelay, loaderDelay } = theme;
+import { theme, mixins, Section } from '@styles';
+const { colors, fonts } = theme;
 
 const StyledContainer = styled(Section)`
-  ${mixins.flexCenter};
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
-  min-height: 100vh;
-  ${media.tablet`padding-top: 150px;`};
-  div {
-    width: 100%;
+  min-height: 90vh;
+  padding-top: 160px;
+  padding-bottom: 70px;
+  position: relative;
+  @media (max-width: 768px) {
+    min-height: auto;
+    padding-top: 145px;
+    padding-bottom: 65px;
   }
 `;
-const StyledOverline = styled.h1`
+const StyledOverline = styled.p`
   color: ${colors.green};
-  margin: 0 0 20px 3px;
-  font-size: ${fontSizes.md};
-  font-family: ${fonts.SFMono};
-  font-weight: normal;
-  ${media.desktop`font-size: ${fontSizes.sm};`};
-  ${media.tablet`font-size: ${fontSizes.smish};`};
+  margin-bottom: 20px;
+  font: 14px ${fonts.SFMono};
 `;
-const StyledTitle = styled.h2`
-  font-size: 80px;
-  line-height: 1.1;
-  margin: 0;
-  ${media.desktop`font-size: 70px;`};
-  ${media.tablet`font-size: 60px;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`font-size: 40px;`};
+const StyledTitle = styled.h1`
+  font-size: clamp(38px, 5.7vw, 76px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin: 0 0 16px;
 `;
-const StyledSubtitle = styled.h3`
-  font-size: 80px;
-  line-height: 1.1;
-  color: ${colors.slate};
-  ${media.desktop`font-size: 70px;`};
-  ${media.tablet`font-size: 60px;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`font-size: 40px;`};
+const StyledSubtitle = styled.p`
+  max-width: 850px;
+  font-size: clamp(34px, 4.8vw, 62px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: ${colors.lightSlate};
+  margin-bottom: 26px;
 `;
 const StyledDescription = styled.div`
-  margin-top: 25px;
-  width: 50%;
-  max-width: 500px;
+  max-width: 660px;
+  font-size: 21px;
   a {
     ${mixins.inlineLink};
   }
 `;
-const StyledEmailLink = styled.a`
+const StyledActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+`;
+const StyledPrimaryLink = styled.a`
   ${mixins.bigButton};
-  margin-top: 50px;
+  background: ${colors.green};
+  color: ${colors.navy};
+  font-weight: 600;
+  &:hover,
+  &:focus {
+    background: ${colors.white};
+    color: ${colors.navy};
+    border-color: ${colors.white};
+  }
+`;
+const StyledResumeLink = styled.a`
+  ${mixins.bigButton};
+`;
+const StyledFootnote = styled.a`
+  margin-top: 44px;
+  color: ${colors.lightSlate};
+  font: 13px ${fonts.SFMono};
+  padding: 10px 0;
+  span {
+    margin-left: 10px;
+    color: ${colors.green};
+  }
 `;
 
 const Hero = ({ data }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), navDelay);
-    return () => clearTimeout(timeout);
-  }, []);
-
   const { frontmatter, html } = data[0].node;
-
-  const one = () => (
-    <StyledOverline style={{ transitionDelay: '100ms' }}>{frontmatter.title}</StyledOverline>
-  );
-  const two = () => (
-    <StyledTitle style={{ transitionDelay: '200ms' }}>{frontmatter.name}.</StyledTitle>
-  );
-  const three = () => (
-    <StyledSubtitle style={{ transitionDelay: '300ms' }}>{frontmatter.subtitle}</StyledSubtitle>
-  );
-  const four = () => (
-    <StyledDescription
-      style={{ transitionDelay: '400ms' }}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
-  );
-  const five = () => (
-    <div style={{ transitionDelay: '500ms' }}>
-      <StyledEmailLink href={`mailto:${email}`}>Send me a pigeon!</StyledEmailLink>
-    </div>
-  );
-
-  const items = [one, two, three, four, five];
-
   return (
-    <StyledContainer>
-      <TransitionGroup component={null}>
-        {isMounted &&
-          items.map((item, i) => (
-            <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
-              {item}
-            </CSSTransition>
-          ))}
-      </TransitionGroup>
+    <StyledContainer aria-labelledby="intro-title">
+      <StyledOverline>{frontmatter.title}</StyledOverline>
+      <StyledTitle id="intro-title">{frontmatter.name}.</StyledTitle>
+      <StyledSubtitle>{frontmatter.subtitle}</StyledSubtitle>
+      <StyledDescription dangerouslySetInnerHTML={{ __html: html }} />
+      <StyledActions>
+        <StyledPrimaryLink href={`mailto:${email}`}>{frontmatter.buttonText}</StyledPrimaryLink>
+        <StyledResumeLink href={resume} download="Danyal-Ali-Asghar-Resume.pdf">
+          Download my resume
+        </StyledResumeLink>
+      </StyledActions>
+      <StyledFootnote href="#ai-projects">
+        Take a look at my work <span aria-hidden="true">&darr;</span>
+      </StyledFootnote>
     </StyledContainer>
   );
 };
 
-Hero.propTypes = {
-  data: PropTypes.array.isRequired,
-};
-
+Hero.propTypes = { data: PropTypes.array.isRequired };
 export default Hero;

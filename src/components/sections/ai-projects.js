@@ -2,149 +2,98 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
-import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
-import { theme, mixins, Section, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { theme, Section, Heading } from '@styles';
+const { colors, fonts } = theme;
 
-const StyledContainer = styled(Section)`
-  ${mixins.flexCenter};
-  flex-direction: column;
-  align-items: flex-start;
+const StyledIntro = styled.p`
+  max-width: 680px;
+  margin: -15px 0 30px;
 `;
 const StyledGrid = styled.div`
-  margin-top: 50px;
-  width: 100%;
-
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    grid-gap: 15px;
-    position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
-const StyledProjectInner = styled.div`
-  ${mixins.boxShadow};
-  ${mixins.flexBetween};
+const StyledProject = styled.article`
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  padding: 2rem 1.75rem;
-  height: 100%;
-  border-radius: ${theme.borderRadius};
-  transition: ${theme.transition};
-  background-color: ${colors.lightNavy};
-`;
-const StyledProject = styled.div`
-  transition: ${theme.transition};
-  cursor: default;
-  &:hover,
-  &:focus {
-    outline: 0;
-    ${StyledProjectInner} {
-      transform: translateY(-5px);
-    }
+  padding: 32px;
+  border: 1px solid ${colors.lightestNavy};
+  border-radius: 12px;
+  background: ${colors.lightNavy};
+  h3 {
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 16px;
   }
-`;
-const StyledProjectHeader = styled.div`
-  ${mixins.flexBetween};
-  margin-bottom: 30px;
-  width: 100%;
-`;
-const StyledFolder = styled.div`
-  color: ${colors.green};
-  svg {
-    width: 40px;
-    height: 40px;
+  .context {
+    font: 11px/1.7 ${fonts.SFMono};
+    color: ${colors.green};
+    margin-bottom: 20px;
   }
-`;
-const StyledProjectName = styled.h5`
-  margin: 0 0 10px;
-  font-size: ${fontSizes.xxl};
-  color: ${colors.lightestSlate};
-`;
-const StyledProjectDescription = styled.div`
-  font-size: 17px;
-  color: ${colors.lightSlate};
-  a {
-    ${mixins.inlineLink};
+  .summary {
+    color: ${colors.lightestSlate};
+    font-size: 19px;
+  }
+  .detail {
+    font-size: 17px;
+    padding-top: 6px;
+  }
+  @media (max-width: 480px) {
+    padding: 24px;
   }
 `;
 const StyledTechList = styled.ul`
   display: flex;
-  align-items: flex-end;
-  flex-grow: 1;
   flex-wrap: wrap;
-  padding: 0;
-  margin: 20px 0 0 0;
+  gap: 8px;
   list-style: none;
-
+  padding: 22px 0 0;
+  margin: auto 0 0;
   li {
-    font-family: ${fonts.SFMono};
-    font-size: ${fontSizes.xs};
-    color: ${colors.green};
-    line-height: 1.75;
-    margin-right: 15px;
-    &:last-of-type {
-      margin-right: 0;
-    }
+    font: 11px/1.5 ${fonts.SFMono};
+    padding: 5px 9px;
+    border: 1px solid ${colors.lightestNavy};
+    border-radius: 5px;
+    color: ${colors.lightSlate};
   }
 `;
 
 const AIProjects = ({ data }) => {
-  const revealTitle = useRef(null);
-  const revealProjects = useRef([]);
-
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
-
-  const projects = data.filter(({ node }) => node);
-
+  const revealContainer = useRef(null);
+  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
   return (
-    <StyledContainer id="ai-projects">
-      <Heading ref={revealTitle}>AI Projects</Heading>
-
+    <Section id="ai-projects" ref={revealContainer}>
+      <Heading>What I’ve built</Heading>
+      <StyledIntro>
+        I work across document intelligence, retrieval and automation. Here’s a closer look at the
+        systems I’ve built and the decisions behind them.
+      </StyledIntro>
       <StyledGrid>
-        <div className="projects">
-          {projects.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const { title, tech } = frontmatter;
-
-            return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)} tabIndex="0">
-                <StyledProjectInner>
-                  <header>
-                    <StyledProjectHeader>
-                      <StyledFolder>
-                        <FormattedIcon name="Folder" />
-                      </StyledFolder>
-                    </StyledProjectHeader>
-                    <StyledProjectName>{title}</StyledProjectName>
-                    <StyledProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
-                  </header>
-                  <footer>
-                    {tech && (
-                      <StyledTechList>
-                        {tech.map((item, j) => (
-                          <li key={j}>{item}</li>
-                        ))}
-                      </StyledTechList>
-                    )}
-                  </footer>
-                </StyledProjectInner>
-              </StyledProject>
-            );
-          })}
-        </div>
+        {data.map(({ node }) => {
+          const { title, context, summary, tech } = node.frontmatter;
+          return (
+            <StyledProject key={title}>
+              <p className="context">{context}</p>
+              <h3>{title}</h3>
+              <p className="summary">{summary}</p>
+              <div className="detail" dangerouslySetInnerHTML={{ __html: node.html }} />
+              <StyledTechList aria-label="Technologies I used">
+                {tech.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </StyledTechList>
+            </StyledProject>
+          );
+        })}
       </StyledGrid>
-    </StyledContainer>
+    </Section>
   );
 };
 
-AIProjects.propTypes = {
-  data: PropTypes.array.isRequired,
-};
-
+AIProjects.propTypes = { data: PropTypes.array.isRequired };
 export default AIProjects;

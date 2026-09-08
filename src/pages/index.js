@@ -80,12 +80,14 @@ export const pageQuery = graphql`
     }
     aiProjects: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/ai-projects/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___order], order: ASC }
     ) {
       edges {
         node {
           frontmatter {
             title
+            context
+            summary
             tech
           }
           html

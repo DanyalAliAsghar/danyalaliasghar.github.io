@@ -1,6 +1,6 @@
 ---
-title: 'Get In Touch'
-buttonText: 'Send me a pigeon!'
+title: "Let's talk"
+buttonText: 'Email me'
 ---
 
-My inbox is always open. Whether you have a question or just want to say hello, I'll try my best to get back to you! Feel free to mail me about any relevant job updates.
+I'd be glad to hear about an AI engineering role, a document workflow that needs improving or a data problem you're working through. I welcome a little context about your team and what you're trying to build. You can reach me by email or WhatsApp.

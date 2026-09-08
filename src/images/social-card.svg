@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a192f"/>
+  <rect x="48" y="48" width="1104" height="534" rx="16" fill="#102139" stroke="#303c55"/>
+  <path d="M80 48h120" stroke="#64ffda" stroke-width="4"/>
+  <text x="94" y="117" fill="#64ffda" font-family="Consolas, monospace" font-size="20" letter-spacing="2">DANYAL ALI ASGHAR</text>
+  <text x="94" y="165" fill="#a8b2d1" font-family="Segoe UI, Arial, sans-serif" font-size="25">Senior AI Engineer · Karachi, Pakistan</text>
+  <g fill="#e6f1ff" font-family="Segoe UI, Arial, sans-serif" font-size="62" font-weight="700" letter-spacing="-1.5">
+    <text x="90" y="279">I turn documents and data</text>
+    <text x="90" y="354">into useful AI.</text>
+  </g>
+  <text x="94" y="426" fill="#a8b2d1" font-family="Segoe UI, Arial, sans-serif" font-size="24">My work in document intelligence, RAG and automation.</text>
+  <path d="M94 474h1012" stroke="#303c55"/>
+  <text x="94" y="531" fill="#64ffda" font-family="Consolas, monospace" font-size="20">danyalaliasghar.github.io</text>
+  <text x="1106" y="531" text-anchor="end" fill="#a8b2d1" font-family="Consolas, monospace" font-size="18">Python / Azure / Data</text>
+</svg>

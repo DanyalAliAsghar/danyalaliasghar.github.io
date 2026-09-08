@@ -4,101 +4,80 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, Section, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+const { colors, fonts } = theme;
 
-const StyledContainer = styled(Section)`
-  max-width: 700px;
-`;
 const StyledList = styled.ul`
-  margin-top: 50px;
   padding: 0;
+  margin: 30px 0 0;
   list-style: none;
 `;
 const StyledCert = styled.li`
-  position: relative;
-  padding-left: 30px;
-  padding-bottom: 25px;
-  border-left: 2px solid ${colors.lightestNavy};
-  &:last-of-type {
-    border-left-color: transparent;
-    padding-bottom: 0;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 30px;
+  padding: 24px 0;
+  border-top: 1px solid ${colors.lightestNavy};
+  h3 {
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 4px;
   }
-  &:before {
-    content: '';
-    position: absolute;
-    left: -6px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: ${colors.green};
-  }
-`;
-const StyledTitle = styled.h4`
-  margin: 0 0 8px;
-  font-size: ${fontSizes.lg};
-  font-weight: 500;
-  color: ${colors.lightestSlate};
   a {
     ${mixins.inlineLink};
   }
-`;
-const StyledMeta = styled.p`
-  margin: 0;
-  font-family: ${fonts.SFMono};
-  font-size: ${fontSizes.smish};
-  color: ${colors.lightSlate};
+  p {
+    font-size: 17px;
+    margin: 0;
+  }
+  time {
+    font: 12px/1.7 ${fonts.SFMono};
+    color: ${colors.lightSlate};
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 `;
 
-const formatDate = dateString => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-};
+const formatDate = date =>
+  new Date(date).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
 
 const Certifications = ({ data }) => {
   const revealContainer = useRef(null);
-  const revealCerts = useRef([]);
-
-  useEffect(() => {
-    sr.reveal(revealContainer.current, srConfig());
-    revealCerts.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 75)));
-  }, []);
-
-  const certifications = data.filter(({ node }) => node);
-
+  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
   return (
-    <StyledContainer id="certifications" ref={revealContainer}>
-      <Heading>Certifications</Heading>
-
+    <Section id="certifications" ref={revealContainer}>
+      <Heading>How I keep learning</Heading>
+      <p>I’ve completed the following certifications and training in AI and Python.</p>
       <StyledList>
-        {certifications.map(({ node }, i) => {
-          const { frontmatter } = node;
-          const { title, issuer, url, date } = frontmatter;
-
+        {data.map(({ node }) => {
+          const { title, issuer, url, date } = node.frontmatter;
           return (
-            <StyledCert key={i} ref={el => (revealCerts.current[i] = el)}>
-              <StyledTitle>
-                {url ? (
-                  <a href={url} target="_blank" rel="nofollow noopener noreferrer">
-                    {title}
-                  </a>
-                ) : (
-                  title
-                )}
-              </StyledTitle>
-              <StyledMeta>
-                {issuer} · {formatDate(date)}
-              </StyledMeta>
+            <StyledCert key={title}>
+              <time dateTime={date.slice(0, 7)}>{formatDate(date)}</time>
+              <div>
+                <h3>
+                  {url ? (
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                      {title}
+                    </a>
+                  ) : (
+                    title
+                  )}
+                </h3>
+                <p>{issuer}</p>
+              </div>
             </StyledCert>
           );
         })}
       </StyledList>
-    </StyledContainer>
+    </Section>
   );
 };
 
-Certifications.propTypes = {
-  data: PropTypes.array.isRequired,
-};
-
+Certifications.propTypes = { data: PropTypes.array.isRequired };
 export default Certifications;

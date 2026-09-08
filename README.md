@@ -1,63 +1,52 @@
-<div align="center"> <img alt="Logo" src="https://github.com/DanyalAliAsghar/danyalaliasghar.github.io/blob/main/src/images/logo.png" width="100" /> </div> 
-<h1 align="center"> Danyal Ali Asghar | Portfolio Website Version 1 </h1>
+﻿# My portfolio
 
-<div align="center">
-  <img alt="Demo" src="https://github.com/DanyalAliAsghar/danyalaliasghar.github.io/blob/main/src/images/og.png" />
-</div>
+I use this website to share my experience, projects, and the way I approach software engineering. The site is an expanded companion to my resume at [danyalaliasghar.github.io](https://danyalaliasghar.github.io/).
 
-### TL;DR
+## Run locally
 
-Yes, you can fork this repo. Please give proper credit by linking back to [brittanychiang.com](https://brittanychiang.com). Thanks!
+This Gatsby 2 project uses Node.js 16.20.2 and Yarn Classic. The version in `.nvmrc` matches the existing dependency lockfile.
 
-## 🛠 Installation & Set Up
+```sh
+nvm install
+nvm use
+npm install --global yarn@1.22.22
+yarn install --frozen-lockfile
+yarn develop
+```
 
-1. Install the Gatsby CLI
+The development site is available at `http://localhost:8000`. All Gatsby commands use the project's local CLI.
 
-   ```sh
-   npm install -g gatsby-cli
-   ```
+## Build and preview
 
-2. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
+```sh
+yarn build
+yarn serve
+```
 
-   ```sh
-   nvm install
-   ```
+The production preview is available at `http://localhost:9000`. Generated files go into `public/`, which is excluded from the source branch.
 
-3. Install dependencies
+## Update content
 
-   ```sh
-   yarn
-   ```
+- My introduction, skills, experience, projects, training, and contact copy live in `content/`.
+- The page layouts live in `src/components/sections/`; contact links and site metadata live in `src/config.js`.
+- My downloadable resume lives at `static/resume.pdf`. Keep any legacy resume download paths aligned with this file.
+- My page titles, search descriptions, and social metadata live in `gatsby-config.js` and `src/components/head.js`.
+- My sharing image is `src/images/og.png`, rendered at 1200 × 630 from `src/images/social-card.svg`.
+- Template blog examples are retained as drafts and are excluded from published posts and tags.
 
-4. Start the development server
+## Publish
 
-   ```sh
-   npm start
-   ```
+I keep the source on `main`. GitHub Pages serves the generated website from the root of `master`.
 
-## 🚀 Building and Running for Production
+After reviewing and committing the source changes:
 
-1. Generate a full static production build
+```sh
+git push origin main
+yarn deploy
+```
 
-   ```sh
-   npm run build
-   ```
+The deploy command builds the site and publishes `public/` to `master`. See [Steps-to-deploy.md](Steps-to-deploy.md) for the release checks.
 
-1. Preview the site as it will appear once deployed
+## Credits
 
-   ```sh
-   npm run serve
-   ```
-
-## 🎨 Color Reference
-
-| Color          | Hex                                                                |
-| -------------- | ------------------------------------------------------------------ |
-| Navy           | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) `#0a192f` |
-| Light Navy     | ![#172a45](https://via.placeholder.com/10/0a192f?text=+) `#172a45` |
-| Lightest Navy  | ![#303C55](https://via.placeholder.com/10/303C55?text=+) `#303C55` |
-| Slate          | ![#8892b0](https://via.placeholder.com/10/8892b0?text=+) `#8892b0` |
-| Light Slate    | ![#a8b2d1](https://via.placeholder.com/10/a8b2d1?text=+) `#a8b2d1` |
-| Lightest Slate | ![#ccd6f6](https://via.placeholder.com/10/ccd6f6?text=+) `#ccd6f6` |
-| White          | ![#e6f1ff](https://via.placeholder.com/10/e6f1ff?text=+) `#e6f1ff` |
-| Green          | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
+I adapted the original portfolio design by [Brittany Chiang](https://brittanychiang.com). The original attribution and MIT license remain in this repository.

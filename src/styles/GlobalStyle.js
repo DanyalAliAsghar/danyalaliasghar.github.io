@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     width: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 92px;
   }
 
   *,
@@ -29,8 +31,8 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     background-color: ${colors.navy};
-    color: ${colors.slate};
-    line-height: 1.3;
+    color: ${colors.lightSlate};
+    line-height: 1.55;
     font-family: ${fonts.Calibre};
     font-size: ${fontSizes.xl};
     ${media.phablet`font-size: ${fontSizes.lg};`}
@@ -38,15 +40,10 @@ const GlobalStyle = createGlobalStyle`
     &.hidden {
       overflow: hidden;
     }
-    &.blur {
-      overflow: hidden;
-      #root > #content > * {
-        filter: blur(5px) brightness(0.7);
-        transition: ${theme.transition};
-        pointer-events: none;
-        user-select: none;
-      }
-    }
+  }
+
+  section[id] {
+    scroll-margin-top: 24px;
   }
 
   ::selection {
@@ -70,6 +67,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 600;
     color: ${colors.lightestSlate};
     margin: 0 0 10px 0;
+    line-height: 1.2;
   }
 
   h1 {
@@ -96,11 +94,6 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     max-width: 100%;
     vertical-align: middle;
-  }
-
-  img[alt=""],
-  img:not([alt]) {
-    filter: blur(5px);
   }
 
   svg {
@@ -132,7 +125,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:focus,
     &:active {
-      outline-color: ${colors.lightblue};
+      outline-color: ${colors.green};
     }
   }
 
@@ -271,9 +264,46 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [tabindex="0"]:focus-visible {
+    outline: 2px solid ${colors.green} !important;
+    outline-offset: 5px;
+  }
+
+  @supports not selector(:focus-visible) {
+    a:focus,
+    button:focus {
+      outline: 2px solid ${colors.green} !important;
+      outline-offset: 5px;
+    }
+  }
+
   ${TransitionStyles};
 
   ${PrismStyles};
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
+      scroll-behavior: auto !important;
+    }
+    [data-sr-id] {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 `;
 
 export default GlobalStyle;

@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import { Head, Nav, Social, Footer } from '@components';
+import WhatsApp from './whatsapp';
 import styled from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
-// https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
-if (typeof window !== 'undefined') {
-  // eslint-disable-next-line global-require
-  require('smooth-scroll')('a[href*="#"]');
-}
-
 const SkipToContent = styled.a`
-  position: absolute;
+  position: fixed;
   top: auto;
   left: -999px;
   width: 1px;
@@ -38,7 +33,7 @@ const SkipToContent = styled.a`
     width: auto;
     height: auto;
     overflow: auto;
-    z-index: 99;
+    z-index: 100;
   }
 `;
 const StyledContent = styled.div`
@@ -48,24 +43,23 @@ const StyledContent = styled.div`
 `;
 
 const Layout = ({ children, location }) => {
-  const isHome = location.pathname === '/';
-  const [isLoading, setIsLoading] = useState(isHome);
-
   useEffect(() => {
-    if (isLoading) {
-      return;
-    }
     if (location.hash) {
-      const id = location.hash.substring(1); // location.hash without the '#'
-      setTimeout(() => {
+      const id = location.hash.substring(1);
+      const timeout = setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
+          if (!el.hasAttribute('tabindex')) {
+            el.setAttribute('tabindex', '-1');
+          }
           el.scrollIntoView();
-          el.focus();
+          el.focus({ preventScroll: true });
         }
       }, 0);
+      return () => clearTimeout(timeout);
     }
-  }, [isLoading]);
+    return undefined;
+  }, [location.hash]);
 
   return (
     <StaticQuery
@@ -82,26 +76,21 @@ const Layout = ({ children, location }) => {
       `}
       render={({ site }) => (
         <div id="root">
-          <Head metadata={site.siteMetadata} />
+          <Head metadata={site.siteMetadata} pathname={location.pathname} />
 
           <GlobalStyle />
 
-          <SkipToContent href="#content">Skip to Content</SkipToContent>
+          <SkipToContent href="#content">Skip to content</SkipToContent>
 
-          {isLoading && isHome ? (
-            <Loader finishLoading={() => setIsLoading(false)} />
-          ) : (
-            <StyledContent>
-              <Nav isHome={isHome} />
-              <Social isHome={isHome} />
-              <Email isHome={isHome} />
-
-              <div id="content">
-                {children}
-                <Footer />
-              </div>
-            </StyledContent>
-          )}🥚
+          <StyledContent>
+            <Nav />
+            <Social isHome={false} />
+            <div id="content" tabIndex={-1}>
+              {children}
+              <Footer />
+            </div>
+            <WhatsApp />
+          </StyledContent>
         </div>
       )}
     />

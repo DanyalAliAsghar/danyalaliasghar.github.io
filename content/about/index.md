@@ -1,20 +1,18 @@
 ---
-title: 'About Me'
+title: 'About me'
 avatar: 'me.jpg'
 skills:
-  - Programming Languages: Python, C, C++, Java, Node.js
-  - AI / GenAI / LLMs: OpenAI GPT, Azure OpenAI, Azure Mistral OCR, Whisper STT, Hugging Face Transformers, LangChain, LlamaIndex, prompt engineering, RAG workflows, LLM-based extraction, AI workflow automation
-  - Machine Learning / NLP: scikit-learn, PyTorch, TensorFlow, pandas, NumPy, model evaluation, feature engineering, data validation
-  - Databases / Vector Stores: PostgreSQL, MySQL, MongoDB, Redshift, BigQuery, Pinecone, FAISS, Weaviate
-  - Data Engineering / Orchestration: dbt, Airflow, ETL/ELT pipelines, analytics modeling, data quality checks, pipeline monitoring
-  - Web / Backend: FastAPI, Flask, Django, RESTful APIs, WebSockets, gRPC, ReactJS, JavaScript, HTML, CSS
-  - Cloud / DevOps: Azure, AWS, Docker, Kubernetes, CI/CD, Blob Storage, Cosmos DB, cloud deployment
-  - Operating Systems: Windows, macOS, Linux
-  - Version Control / Collaboration: Git, Bitbucket, Alembic, Jira
+  - 'Python & APIs: Python, SQL, FastAPI, Flask, Django, REST APIs, JavaScript'
+  - 'LLM frameworks & retrieval: LangChain, LangGraph, LlamaIndex, RAG, Azure AI Search, Pinecone, FAISS, prompt engineering'
+  - 'AI & evaluation: Azure OpenAI, OpenAI GPT, Azure Mistral OCR, Whisper, structured extraction, Hugging Face Transformers, PyTorch, scikit-learn, model evaluation'
+  - 'Data engineering: Airflow, dbt, ETL/ELT, PostgreSQL, Redshift, MongoDB, Cosmos DB, Pandas, NumPy'
+  - 'Cloud & delivery: Azure, AWS, Azure Functions, Blob Storage, Docker, Kubernetes, CI/CD, Git, data validation and monitoring'
 ---
 
-With 7+ years of experience in AI engineering, I build production-ready systems that combine machine learning, large language models, and cloud-native data platforms. My work spans end-to-end AI solutions, from document and semantic search to OCR-powered extraction, voice assistants, RAG workflows, and automated analytics pipelines.
+I started with data analysis and Python automation, moved into full stack development and data engineering, and now build AI applications. That path shapes how I work: I care about the data going in, the answers coming out and what happens when a step fails.
 
-I have a strong background in designing scalable inference and data orchestration workflows, integrating AI into web and backend services, and delivering reliable results with Azure and AWS. I also focus on model evaluation, feature engineering, and operational quality checks to ensure solutions are robust and production-ready.
+At Al Rafay Consulting, I build document intelligence for commercial lease review. I've also developed knowledge assistants, connected speech recognition to conversational AI and built the data pipelines that support analytics and automated workflows.
 
-I enjoy turning complex data into practical, automated intelligence and helping teams adopt modern AI patterns with clarity and confidence.
+I'm most interested in work where AI has a clear, practical purpose. I focus on useful outputs, validation and reliable delivery, with enough visibility to understand what a system is doing.
+
+I earned my Bachelor of Science in Computer Science at COMSATS University Islamabad, where I studied from 2014 to 2019. Here's the toolkit I bring to my work.

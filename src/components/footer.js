@@ -1,135 +1,91 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedIcon } from '@components/icons';
 import { socialMedia } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+const { colors, fonts } = theme;
 
 const StyledContainer = styled.footer`
   ${mixins.flexCenter};
   flex-direction: column;
-  padding: 15px;
+  padding: 30px 90px 38px;
+  border-top: 1px solid rgba(168, 178, 209, 0.1);
   text-align: center;
-  height: auto;
-  min-height: 70px;
-`;
-const StyledSocial = styled.div`
-  color: ${colors.lightSlate};
-  width: 100%;
-  max-width: 270px;
-  margin: 0 auto 10px;
-  display: none;
-  ${media.tablet`display: block;`};
+  ${media.tablet`padding: 28px 25px 100px;`};
 `;
 const StyledSocialList = styled.ul`
-  ${mixins.flexBetween};
+  display: none;
+  justify-content: center;
+  gap: 16px;
   padding: 0;
-  margin: 0;
+  margin: 0 0 16px;
   list-style: none;
-`;
-const StyledSocialLink = styled.a`
-  padding: 10px;
+  ${media.tablet`display: flex;`};
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: ${colors.lightSlate};
+    &:hover {
+      color: ${colors.green};
+    }
+  }
   svg {
-    width: 20px;
-    height: 20px;
+    width: 21px;
+    height: 21px;
   }
 `;
 const StyledMetadata = styled.div`
-  font-family: ${fonts.SFMono};
-  font-size: ${fontSizes.xs};
-  line-height: 1;
-`;
-const StyledGitHubLink = styled.a`
+  max-width: 620px;
   color: ${colors.lightSlate};
-  padding: 10px;
-`;
-const StyledGitHubInfo = styled.div`
-  margin-top: 10px;
-
-  & > span {
-    display: inline-flex;
-    align-items: center;
-    margin: 0 7px;
+  font-family: ${fonts.SFMono};
+  font-size: 12px;
+  line-height: 1.8;
+  p {
+    margin: 0;
   }
-  svg {
-    display: inline-block;
-    height: 15px;
-    width: auto;
-    margin-right: 5px;
-  }
-`;
-
-const Footer = () => {
-  const [githubInfo, setGitHubInfo] = useState({
-    stars: null,
-    forks: null,
-  });
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      return;
+  a {
+    text-underline-offset: 4px;
+    &:hover {
+      text-decoration: underline;
     }
-    fetch('https://api.github.com/repos/bchiang7/v4')
-      .then(response => response.json())
-      .then(json => {
-        const { stargazers_count, forks_count } = json;
-        setGitHubInfo({
-          stars: stargazers_count,
-          forks: forks_count,
-        });
-      })
-      .catch(e => console.error(e));
-  }, []);
+  }
+`;
 
-  return (
-    <StyledContainer>
-      <StyledSocial>
-        <StyledSocialList>
-          {socialMedia &&
-            socialMedia.map(({ name, url }, i) => (
-              <li key={i}>
-                <StyledSocialLink
-                  href={url}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  aria-label={name}>
-                  <FormattedIcon name={name} />
-                </StyledSocialLink>
-              </li>
-            ))}
-        </StyledSocialList>
-      </StyledSocial>
-      <StyledMetadata tabindex="-1">
-        <StyledGitHubLink
-          href="https://github.com/bchiang7/v4"
+const Footer = () => (
+  <StyledContainer>
+    <StyledSocialList aria-label="My professional profiles">
+      {socialMedia.map(({ name, url }) => (
+        <li key={name}>
+          <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`My ${name} profile`}>
+            <FormattedIcon name={name} />
+          </a>
+        </li>
+      ))}
+    </StyledSocialList>
+    <StyledMetadata>
+      <p>
+        I built this portfolio to share my work.{' '}
+        <a
+          href="https://github.com/DanyalAliAsghar/danyalaliasghar.github.io"
           target="_blank"
-          rel="nofollow noopener noreferrer">
-          <div>
-            Designed &amp; Built by Brittany Chiang<br></br>
-            Revamped by Danyal Ali Asghar
-          </div>
-
-          {githubInfo.stars && githubInfo.forks && (
-            <StyledGitHubInfo>
-              <span>
-                <FormattedIcon name="Star" />
-                <span>{githubInfo.stars.toLocaleString()}</span>
-              </span>
-              <span>
-                <FormattedIcon name="Fork" />
-                <span>{githubInfo.forks.toLocaleString()}</span>
-              </span>
-            </StyledGitHubInfo>
-          )}
-        </StyledGitHubLink>
-      </StyledMetadata>
-    </StyledContainer>
-  );
-};
-
-Footer.propTypes = {
-  githubInfo: PropTypes.object,
-};
+          rel="noopener noreferrer"
+        >
+          View my source code
+        </a>
+        .
+      </p>
+      <p>
+        I adapted the original design by{' '}
+        <a href="https://brittanychiang.com" target="_blank" rel="noopener noreferrer">
+          Brittany Chiang
+        </a>
+        .
+      </p>
+    </StyledMetadata>
+  </StyledContainer>
+);
 
 export default Footer;

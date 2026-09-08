@@ -3,13 +3,13 @@ import theme from './theme';
 import media from './media';
 const { colors, fontSizes, fonts } = theme;
 
-const Heading = styled.h3`
+const Heading = styled.h2`
   position: relative;
   display: flex;
   align-items: center;
   margin: 10px 0 40px;
   width: 100%;
-  white-space: nowrap;
+  line-height: 1.25;
   font-size: ${fontSizes.h3};
   ${media.tablet`font-size: 24px;`};
 
@@ -31,6 +31,7 @@ const Heading = styled.h3`
     display: block;
     height: 1px;
     width: 300px;
+    flex: 1;
     background-color: ${colors.lightestNavy};
     position: relative;
     top: -5px;

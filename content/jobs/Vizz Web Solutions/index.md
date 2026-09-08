@@ -6,18 +6,8 @@ range: 'January 2019 - February 2020 | Islamabad'
 url: 'https://www.vizzwebsolutions.com/'
 ---
 
-- Worked with REST APIs and web scraping to extract data (Tweepy, Telethon, GoogleNewsAPI).
+- I reduced legacy script code by 75% by migrating Node.js scripts to Python and simplifying existing data-processing tasks.
 
-- Extracted and processed textual data using APIs and web scraping for NLP analysis.
+- I automated text collection and real-time ingestion with REST APIs, Tweepy, Telethon and GoogleNewsAPI, preparing source data for NLP analysis.
 
-- Conducted sentiment analysis using TextBlob and VaderSentiment to extract insights from unstructured data.
-
-- Performed CRUD operations in MongoDB (PyMongo).
-
-- Experience in using modern build toolchains and package managers (conda, pip).
-
-- Automated data pipelines and scripts for real-time data ingestion and processing.
-
-- Performed 75% code reduction in prior scripts while converting NodeJS scripts to Python.
-
-- Tech Stack: Python, Flask, NodeJS, Git, MongoDB, AWS.
+- I analyzed sentiment with TextBlob and VADER and managed source and processed text in MongoDB through PyMongo.

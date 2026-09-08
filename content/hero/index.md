@@ -1,8 +1,8 @@
 ---
-title: 'Hello World! My name is'
+title: "Hi, I'm"
 name: 'Danyal Ali Asghar'
-subtitle: 'I build scalable AI and data systems.'
-buttonText: 'Send me a pigeon!'
+subtitle: 'I turn documents and data into useful AI.'
+buttonText: 'Email me'
 ---
 
-Senior AI Engineer with 7+ years of experience building scalable AI, data, and cloud systems. Hands-on experience with LLM-based extraction, RAG-style retrieval, prompt engineering, Azure AI services, and production automation. Strong in Python, SQL, cloud architecture, and end-to-end AI system delivery.
+I'm a Senior AI Engineer in Karachi with 7+ years across software, data engineering and AI. I build Python and Azure applications that help teams work with complex documents, find answers in their knowledge base and automate everyday workflows.
